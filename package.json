@@ -2,7 +2,7 @@
   "name": "superherofb",
   "version": "1.0.0",
   "description": "SuperHeroes",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "vitest"
   },
