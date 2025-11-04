@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const favoriteSchema = new mongoose.Schema({
-    id: { type: Number, required: true },
+    id: { type: Number, required: true, unique: true },
     note: { type: String, required: true },
 });
 

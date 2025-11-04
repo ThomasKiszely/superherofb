@@ -2,6 +2,8 @@ const Favorite = require('../models/Favorite');
 
 async function addFavorite(id, note) {
     try{
+        const existing = await Favorite.findOne({ id });
+        if(existing) return existing;
         const newFavorite = new Favorite({id, note});
         return await newFavorite.save();
     } catch (error) {
@@ -11,14 +13,14 @@ async function addFavorite(id, note) {
 
 async function getFavorites(){
     try {
-        return await Favorite.find({});
+        return Favorite.find({});
     } catch (error) {
         throw error;
     }
 }
 async function deleteFavorite(id){
     try {
-        return await Favorite.findByIdAndDelete(id);
+        return Favorite.deleteOne({id: id});
     } catch (error) {
         throw error;
     }

@@ -26,8 +26,8 @@ async function createFavoriteController(req, res, next) {
 
 async function deleteFavoriteController(req, res, next) {
     try {
-        const id = req.params.id;
-        const deletedFavorite = await favoriteService.deleteFavorite(id);
+        const id = Number(req.params.id);
+        const deletedFavorite = await favoriteService.deleteFavorite(Number(id));
         if (!deletedFavorite) {
             return res.status(404).json({ error: 'Favorite not found' });
         }

@@ -31,7 +31,7 @@ async function addFavorite(id, note) {
 }
 async function deleteFavorite(id) {
     try {
-        return favoriteRepo.deleteFavorite(id);
+        return favoriteRepo.deleteFavorite(Number(id));
     } catch (error) {
         console.log('Fejl ved sletning af favorite i service');
         throw error;
