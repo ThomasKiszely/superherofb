@@ -11,14 +11,14 @@ async function addFavorite(id, note) {
 
 async function getFavorites(){
     try {
-        return Favorite.find({});
+        return await Favorite.find({});
     } catch (error) {
         throw error;
     }
 }
 async function deleteFavorite(id){
     try {
-        return Favorite.findByIdAndDelete(id);
+        return await Favorite.findByIdAndDelete(id);
     } catch (error) {
         throw error;
     }

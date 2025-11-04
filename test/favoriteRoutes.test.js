@@ -1,6 +1,7 @@
 const request = require( 'supertest');
 import { describe, it, vi, expect } from 'vitest';
 const app = require('../src/app');
+const mongoose = require('mongoose');
 
 
 describe('Favorite Routes', () => {
@@ -11,7 +12,8 @@ describe('Favorite Routes', () => {
     });
 
     it('Should return 404 if does not exist', async () => {
-        const res = await request(app)['delete']('/favorites/200');
-        expect(res.status).toBe(500);
+        const fakeId = new mongoose.Types.ObjectId(); // gyldigt, men ikke i databasen
+        const res = await request(app).delete(`/favorites/${fakeId}`);
+        expect(res.status).toBe(404);
     });
 });

@@ -28,6 +28,9 @@ async function deleteFavoriteController(req, res, next) {
     try {
         const id = req.params.id;
         const deletedFavorite = await favoriteService.deleteFavorite(id);
+        if (!deletedFavorite) {
+            return res.status(404).json({ error: 'Favorite not found' });
+        }
         res.status(200).json(deletedFavorite);
     } catch (error) {
         console.log('Fejl i controller deleteFavoriteController', error);
