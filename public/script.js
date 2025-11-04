@@ -102,10 +102,17 @@ function renderFavorites(favorites) {
 }
 async function setFavorite(id, status) {
     if (status) {
+        const note = prompt('Indtast en note til din favorit:', 'Min yndlings-superhelt');
+        if (note === null) {
+            await loadFavorites();
+            await loadSuperHeroes();
+            renderFavorites(currentFavorites);
+            return;
+        }
         const res = await fetch('/favorites/', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({id, note: 'Den bedste superhero'}),
+            body: JSON.stringify({id, note}),
         });
         if (!res.ok) {
             const err = await res.json().catch(() => {});
