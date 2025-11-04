@@ -82,6 +82,7 @@ function render(data) {
 
 function renderFavorites(favorites) {
     const favBody = document.querySelector('#list2 tbody');
+    const isFavorite = currentFavorites.some(fav => Number(fav.id) === Number(fav.id));
     favBody.innerHTML = '';
     for (const fav of favorites) {
         const row = document.createElement('tr');
@@ -91,7 +92,11 @@ function renderFavorites(favorites) {
       <td>${fav.strength}</td>
       <td><img src="${fav.image}" alt="${fav.name}" width="50"/></td>
       <td>${fav.note || ''}</td>
+      <td><input type="checkbox" /></td>
       `;
+        const checkbox = row.querySelector('input');
+        checkbox.checked = isFavorite;
+        checkbox.addEventListener('change', () => setFavorite(fav.id, checkbox.checked))
         favBody.appendChild(row);
     }
 }
@@ -123,6 +128,7 @@ async function setFavorite(id, status) {
         currentFavorites = currentFavorites.filter(fav => Number(fav.id) !== Number(id));
     }
     await loadFavorites();
+    await loadSuperHeroes();
     renderFavorites(currentFavorites);
 }
 
