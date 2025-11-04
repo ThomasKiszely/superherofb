@@ -36,7 +36,12 @@ describe('favoriteController', () => {
     });
 
     it('should delete a favorite', async () => {
-        req.params.id = 3;
+        const req = {
+            params: {
+                id: 3
+            }
+        };
+
         const mockDeleted = { id: 3, note: 'Deleted' };
         vi.spyOn(favoriteService, 'deleteFavorite').mockResolvedValue(mockDeleted);
 
