@@ -1,6 +1,6 @@
 const songs = [
-    { ZZTop: 'Just got paid' },
-    { ZZTop: 'Jesus just left Chicago' },
+    { ZZTop: 'Just Got Paid' },
+    { ZZTop: 'Jesus Just Left Chicago' },
     { ZZTop: 'La Grange' },
     { ZZTop: 'Mexican Blackbird' },
     { ZZTop: 'Cheap Sunglasses' },
