@@ -12,7 +12,7 @@ describe('Favorite Routes', () => {
     });
 
     it('Should return 404 if does not exist', async () => {
-        const fakeId = new mongoose.Types.ObjectId(); // gyldigt, men ikke i databasen
+        const fakeId = 50000; // gyldigt, men ikke i databasen
         const res = await request(app).delete(`/favorites/${fakeId}`);
         expect(res.status).toBe(404);
     });
