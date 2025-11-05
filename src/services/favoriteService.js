@@ -4,9 +4,7 @@ const superHeroRepo = require('../data/superHeroRepo');
 async function getAllFavorites() {
     try{
         const favoritesRaw = await favoriteRepo.getFavorites();
-        console.log(favoritesRaw);
         const favorites = favoritesRaw.map(i => i.id);
-        console.log(favorites);
         const superHeroes = await Promise.all(
             favorites.map(id => superHeroRepo.fetchSuperHeroesId(id))
         );

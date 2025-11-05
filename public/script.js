@@ -13,7 +13,6 @@ async function loadFavorites() {
         }
         const favorites = await res.json();
         currentFavorites = favorites;
-        console.log('Loaded favorites:', currentFavorites); // DEBUG
         renderFavorites(favorites);
         return favorites;
     } catch (error) {
@@ -57,13 +56,12 @@ document.getElementById('nextBtn').addEventListener('click', () => {
     }
 });
 function render(data) {
-    console.log('Render superheroes. Nuværende favoritter:', currentFavorites);
     const listBody = document.querySelector('#list tbody');
     listBody.innerHTML = '';
 
     for (const it of data) {
         const isFavorite = currentFavorites.some(fav => Number(fav.id) === Number(it.id));
-        console.log(`Superhero ${it.name} (id: ${it.id}) - isFavorite: ${isFavorite}`); // DEBUG
+        console.log(`Superhero ${it.name} (id: ${it.id}) - isFavorite: ${isFavorite}`);
         const row = document.createElement('tr');
         row.innerHTML = `
         <td>${it.name}</td>
@@ -120,7 +118,6 @@ async function setFavorite(id, status) {
             return;
         }
         const newFavorite = await res.json();
-        console.log('Added til favoritter.', newFavorite);
         currentFavorites.push(newFavorite);
     } else {
         const res = await fetch(`/favorites/${id}`, {
@@ -131,7 +128,6 @@ async function setFavorite(id, status) {
             alert('Kan ikke slette favorite' + (err.status || res.statusText));
             return;
         }
-        console.log('Slettet fra favoritter: ', id);
         currentFavorites = currentFavorites.filter(fav => Number(fav.id) !== Number(id));
     }
     await loadFavorites();
