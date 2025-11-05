@@ -20,7 +20,7 @@ async function getFavorites(){
 }
 async function deleteFavorite(id){
     try {
-        return Favorite.deleteOne({id: id});
+        return await Favorite.findOneAndDelete({id});
     } catch (error) {
         throw error;
     }
